@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  php80:
+    container_name: "example-app-80"
+    image: "lamp-php:8.0"
+    restart: always
+    volumes:
+      - ./src:/var/www/html
+  php74:
+    container_name: "example-app-74"
+    image: "lamp-php:7.4"
+    restart: always
+    volumes:
+      - ./src:/var/www/html
+  php73:
+    container_name: "example-app-73"
+    image: "lamp-php:7.3"
+    restart: always
+    volumes:
+      - ./src:/var/www/html
+  web:
+    container_name: "example-web"
+    image: "lamp-apache"
+    restart: always
+    ports:
+      - "80:8080"
+      - "8074:8074"
+      - "8073:8073"
+    volumes:
+      - ./src:/var/www/html
+      # - ./vhosts:/usr/local/apache2/conf/vhosts
