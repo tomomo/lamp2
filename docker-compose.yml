@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  php80:
+    build:
+      context: ./containers/php-8.0
+      dockerfile: Dockerfile
+    image: 'lamp-php:8.0'
+  php74:
+    build:
+      context: ./containers/php-7.4
+      dockerfile: Dockerfile
+    image: 'lamp-php:7.4'
+  php73:
+    build:
+      context: ./containers/php-7.3
+      dockerfile: Dockerfile
+    image: 'lamp-php:7.3'
+  apache:
+    build:
+      context: ./containers/apache
+      dockerfile: Dockerfile
+    image: 'lamp-apache:latest'
