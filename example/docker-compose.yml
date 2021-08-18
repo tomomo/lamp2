@@ -1,19 +1,19 @@
 version: "3.9"
 
 services:
-  php80:
+  php80: # NOTE: そのまま使う場合は固定値
     container_name: "example-app-80"
     image: "lamp-php:8.0"
     restart: always
     volumes:
       - ./src:/var/www/html
-  php74:
+  php74: # NOTE: そのまま使う場合は固定値
     container_name: "example-app-74"
     image: "lamp-php:7.4"
     restart: always
     volumes:
       - ./src:/var/www/html
-  php73:
+  php73: # NOTE: そのまま使う場合は固定値
     container_name: "example-app-73"
     image: "lamp-php:7.3"
     restart: always
@@ -28,5 +28,6 @@ services:
       - "8074:8074"
       - "8073:8073"
     volumes:
-      - ./src:/var/www/html
+      - ./src:/var/www/html:cached
+      # NOTE: 設定を書き換える場合はvhostsを置き換える
       # - ./vhosts:/usr/local/apache2/conf/vhosts

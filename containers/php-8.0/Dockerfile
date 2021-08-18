@@ -17,6 +17,7 @@ RUN \
   docker-php-ext-install -j${NPROC} \
     bcmath \
     bz2 \
+    calendar \
     exif \
     gd \
     gettext \
