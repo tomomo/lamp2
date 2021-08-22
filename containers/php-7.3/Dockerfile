@@ -4,10 +4,12 @@ FROM php:7.3-fpm-alpine
 RUN \
   apk add --no-cache --virtual .build-deps autoconf build-base postgresql-dev && \
   apk add --no-cache \
+    shadow \
     bzip2-dev \
     gettext-dev \
     postgresql-libs \
     imagemagick-dev libpng-dev libjpeg-turbo-dev \
+    icu-dev \
     libzip-dev \
   && \
   pecl install imagick redis && \
@@ -21,6 +23,7 @@ RUN \
     exif \
     gd \
     gettext \
+    intl \
     mysqli pdo_mysql \
     pgsql pdo_pgsql \
     sockets \
@@ -32,7 +35,10 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY --from=node /usr/local/bin/node /usr/local/bin/
 COPY --from=node /usr/local/lib/node_modules/ /usr/local/lib/node_modules/
 COPY --from=node /opt/yarn* /opt/yarn
-RUN { \
+
+ARG UID=1000
+RUN usermod -u ${UID} www-data && \
+  { \
     echo ''; \
     echo 'security.limit_extensions = .php .html'; \
   } >> /usr/local/etc/php-fpm.d/www.conf && \
