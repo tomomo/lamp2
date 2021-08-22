@@ -47,3 +47,5 @@ RUN usermod -u ${UID} www-data && \
   ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npx && \
   ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn && \
   ln -s /opt/yarn/bin/yarnpkg /usr/local/bin/yarnpkg
+
+USER ${UID}
